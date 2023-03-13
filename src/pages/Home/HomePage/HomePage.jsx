@@ -7,13 +7,13 @@ import TourSDoptions from "../../TourSearchDestinationOption/TourSDoptions";
 
 const HomePage = () => {
   return (
-    <div>
+    <div className="z-[-1]">
         <div className="relative">
             <Carousel />
-            <div className="absolute inset-0 top-40 z-10">
+            <div className="absolute inset-0 top-40 ">
               <TourSDoptions />
             </div>
-            <div className="md:absolute md:inset-x-0 -bottom-10  z-10">
+            <div className="md:absolute md:inset-x-0 -bottom-10  ">
               <TourForeCast />
             </div>
       

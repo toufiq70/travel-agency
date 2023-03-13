@@ -31,7 +31,7 @@ const TourSDoptions = () => {
 
   return (
     <div>
-      <div className="md:mx-44 px-4">
+      <div className="md:mx-44 px-4 z-10">
             <form onSubmit={handledurationDestination} className='md:flex flex-grow   gap-1 justify-center items-center  '>
             <div className="bg-white w-full mb-1 md:mb-0 rounded-sm">
             <input 
@@ -39,7 +39,7 @@ const TourSDoptions = () => {
             name="search" 
             onChange={handleSearchKeyword}
             placeholder="keyword" 
-            className="inline-block appearance-none bg-gray-200  border border-gray-200 text-gray-700  px-4 rounded-sm leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full"
+            className="inline-block appearance-none  bg-gray-200  border border-gray-200 text-gray-700  px-4 rounded-sm leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full"
             />
            </div>
             <div className="bg-white relative w-full mb-1 md:mb-0 rounded-sm">
@@ -64,7 +64,7 @@ const TourSDoptions = () => {
             <select 
             name="" 
             id=""
-            className="inline-block appearance-none bg-gray-200  border border-gray-200 text-gray-700  px-4 rounded-sm leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full"
+            className="inline-block   appearance-none bg-gray-200  border border-gray-200 text-gray-700  px-4 rounded-sm leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full"
             value={selectedDuration}
             onChange={handleSetDurationchanges}
             >
@@ -82,7 +82,7 @@ const TourSDoptions = () => {
            <div className=" w-full">
             <button 
             type="submit"
-            className="inline-block appearance-none bg-[#f97654]  border border-gray-200 text-white py-2 px-4 rounded-sm leading-tight  outline-none  focus:border-gray-500 w-full"
+            className="inline-block appearance-none  z-[10] bg-[#f97654]  border border-gray-200 text-white py-2 px-4 rounded-sm leading-tight  outline-none  focus:border-gray-500 w-full"
             >Search</button>
           </div>
             </form>

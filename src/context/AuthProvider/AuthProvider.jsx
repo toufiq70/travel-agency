@@ -1,7 +1,9 @@
 // @ts-nocheck
-import React, { createContext } from "react";
-
+import React, { createContext, useEffect, useState } from "react";
+import app from "../../firebase/auth/firbase.init";
+import {createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from 'firebase/auth';
 export const AuthContext = createContext();
+const auth = getAuth(app)
 const AuthProvider = ({ children }) => {
   // header context
   const headersLink = [
@@ -95,12 +97,97 @@ const AuthProvider = ({ children }) => {
     },
   ];
 
+  // authentication start
+
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  // create user
+  const createUser = (email, password) => {
+    setLoading(true)
+    return createUserWithEmailAndPassword(auth, email, password);
+  }
+
+  // login
+  const logIn = (email, password) => {
+    setLoading(true)
+    return signInWithEmailAndPassword(auth, email, password);
+  }
+
+  // log out
+  const logOut = () => {
+    return signOut(auth);
+  }
+
+  // email verification 
+  const emailVerify = (userEmail) => {
+    setLoading(true);
+    return sendEmailVerification(userEmail)
+  }
+
+  // password reset email
+  const forgotPassword = (email) => {
+    setLoading(true);
+    return sendPasswordResetEmail(auth, email)
+  }
+
+
+  // login with google
+  const googleProvider = new GoogleAuthProvider;
+
+  const googleSignIn = () => {
+    setLoading(true);
+    return signInWithPopup(auth,googleProvider);
+  }
+
+  // login with facebook
+  const facebookProvider = () => {
+    setLoading(true);
+    return signInWithPopup(auth, facebookProvider);
+  }
+
+
+  // display user Name profile
+  const updateUserProfile = (profile) => {
+    // setLoading(true);
+    return updateProfile(auth.currentUser, profile)
+
+  }
+
+
+  // set observer
+useEffect( () => {
+  const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+    console.log("current user", currentUser);
+    
+    
+      setUser(currentUser);
+    
+
+    setLoading(false);
+  })
+  return () => {
+    unSubscribe()
+  }
+},[])
+
+
   const authInfo = {
     headersLink,
     slides,
+    updateUserProfile,
     destinationsData,
     durationsData,
     tourForeCastData,
+    createUser,
+    logIn,
+    logOut,
+    emailVerify,
+    forgotPassword,
+    googleSignIn,
+    facebookProvider,
+    user,
+    setUser
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

@@ -4,7 +4,7 @@ import Headers from '../Header/Headers';
 
 const Nav = () => {
     return (
-        <div className='z-20'>
+        <div className=''>
             <Announcement/>
             <div className=''>
             <Headers/>

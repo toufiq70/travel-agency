@@ -8,12 +8,13 @@ import DatePricing from "../pages/DatePricing/DatePricing";
 import Destinations from "../pages/Destinations/Destinations";
 import HomePage from "../pages/Home/HomePage/HomePage";
 import Login from "../pages/Login/Login";
-import PopularDestinations from "../pages/PopularDestinaions/PopularDestinations";
+import Profile from "../pages/Profile/Profile";
 import Register from "../pages/Register/Register";
 import TourDetails from "../pages/TourDetails/TourDetails";
 import TourList from "../pages/TourList/TourList";
 import Tours from "../pages/Tours/Tours";
 import TourSearch from "../pages/TourSearch/TourSearch";
+import PrivateRoute from "./PrivateRouter/PrivateRoute";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -57,17 +58,32 @@ const routes = createBrowserRouter([
         element: <Register />,
       },
       {
+        path: "/profile",
+        element: <Profile />,
+      },
+      // {
+      //   path: "/profile_popUp",
+      //   element: <ProfilePopUp />,
+      // },
+      {
         path: "/destination/:id",
         element: <Tours />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/destination/${params.id}`),
+          fetch(
+            `https://travel-tour-server.vercel.app/destination/${params.id}`
+          ),
       },
 
       {
         path: "/tours/:id",
-        element: <TourDetails />,
+        element: (
+          <PrivateRoute>
+            {" "}
+            <TourDetails />{" "}
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/tours/${params.id}`),
+          fetch(`https://travel-tour-server.vercel.app/tours/${params.id}`),
       },
     ],
   },

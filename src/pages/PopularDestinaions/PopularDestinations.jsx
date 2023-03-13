@@ -1,10 +1,11 @@
 // @ts-nocheck
 import React, { useEffect, useState } from "react";
 import { json, Link } from "react-router-dom";
+import Tours from "../Tours/Tours";
 
 const PopularDestinations = () => {
   const [destination, setDestination] = useState([]);
-  const url = "http://localhost:5000/destination";
+  const url = "https://travel-tour-server.vercel.app/destination";
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
@@ -12,10 +13,10 @@ const PopularDestinations = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 mx-2 md:mx-0">
       {destination.map((des) => (
-        <div className="relative group" key={des.id}>
-          <Link to={`/destination/${des.id}`}>
+        <div className="relative group" key={des.id}> 
+          <div className="h-full">
             <img 
             src={des.image} 
             alt={des.title} 
@@ -30,7 +31,7 @@ const PopularDestinations = () => {
                 <Link to={`/destination/${des.id}`} className="text-red-500 mt-4 font-medium">{des.btn}</Link>
             </div>
 
-          </Link>
+          </div>
         </div>
       ))}
     </div>

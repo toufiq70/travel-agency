@@ -5,13 +5,13 @@ import { FaBars, FaTimes, FaUserAlt } from "react-icons/fa";
 
 const Headers = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
-  const { headersLink } = useContext(AuthContext);
-  console.log(headersLink);
+  const { headersLink ,user} = useContext(AuthContext);
+  // console.log(headersLink);
+  
   return (
-    <header className="sticky top-0">
+    <header className="">
       <nav className="  bg-white shadow-lg py-4">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-auto font-[Inter]">
